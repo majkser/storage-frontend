@@ -4,15 +4,15 @@ import Image from "next/image";
 
 export default function LoginSidebar() {
   return (
-    <div className="bg-brand w-3/4 h-screen lg:rounded-r-full lg:scale-150">
-      <div className="lg:flex justify-center items-center lg:mt-36">
+    <div className="bg-brand w-full h-screen xl:rounded-r-full xl:scale-150 overflow-hidden">
+      <div className="m-auto xl:flex xl:justify-center xl:items-center xl:mt-40">
         <Image
           priority
           src={mxrLogo}
           alt="MXR Logo"
           width={200}
           height={200}
-          className="mx-auto lg:m-0"
+          className="mx-auto xl:m-0"
         />
         <Image
           priority
@@ -20,10 +20,18 @@ export default function LoginSidebar() {
           alt="pokój 126 logo"
           width={200}
           height={200}
-          className="-mt-16 mx-auto lg:m-0"
+          className="-mt-16 mx-auto xl:m-0"
         />
       </div>
-      <h1 className="">Official Storage</h1>
+      <div className="text-white text-left p-6 xl:max-w-3/5 m-auto lg:-mt-4">
+        <h2 className="h2">MXR and pokój 126</h2>
+        <h3 className="h3 -mt-4">Official Storage</h3>
+        <p className="body xl:body-small">
+          Tutaj znajdziesz gotowe teledyski, nagrania studyjne, zmixowane
+          utwory. Ściągnij pliki na dowolnym urządzeniu i udostępnij je
+          zespołowi.
+        </p>
+      </div>
     </div>
   );
 }
