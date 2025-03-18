@@ -1,25 +1,29 @@
 "use client";
 
-import { useState } from "react";
+//import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { FcGoogle } from "react-icons/fc";
 
 export default function Login() {
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+
+  // const handleGoogleLogin = async () => {
+  //   setIsLoading(true);
+  //   // Implement your Google authentication logic here
+  //   try {
+  //     // Example: await signInWithGoogle()
+  //     console.log("Logging in with Google...");
+  //   } catch (error) {
+  //     console.error("Google login error:", error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
   const handleGoogleLogin = async () => {
-    setIsLoading(true);
-    // Implement your Google authentication logic here
-    try {
-      // Example: await signInWithGoogle()
-      console.log("Logging in with Google...");
-    } catch (error) {
-      console.error("Google login error:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    window.location.href = `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/google`;
   };
 
   return (
@@ -37,10 +41,10 @@ export default function Login() {
             variant="outline"
             className="w-full bg-transparent border border-gray-700 hover:bg-gray-900 text-white flex items-center justify-center gap-2 h-12 rounded-lg"
             onClick={handleGoogleLogin}
-            disabled={isLoading}
+            // disabled={isLoading}
           >
             <FcGoogle className="h-5 w-5" />
-            <span>{isLoading ? "Connecting..." : "Continue with Google"}</span>
+            {/* <span>{isLoading ? "Connecting..." : "Continue with Google"}</span> */}
           </Button>
 
           <div className="flex items-center gap-2">
