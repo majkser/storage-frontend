@@ -11,6 +11,11 @@
   .bg-brand {
     background-color: #3fcda0;
   }
+
+  .shadow-brand {
+    filter: drop-shadow(0 0 1rem #3fcda0);
+  }
+
   .h1 {
     font-size: 3rem;
     line-height: 1.2;
