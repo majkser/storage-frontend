@@ -1,7 +1,9 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { RiUploadCloud2Fill } from "react-icons/ri";
 import { IoIosCloseCircle } from "react-icons/io";
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 export default function FileDropZone({
@@ -11,9 +13,19 @@ export default function FileDropZone({
   isDropZoneOpen: boolean;
   setIsDropZoneOpen: (isOpen: boolean) => void;
 }) {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    console.log(acceptedFiles);
-  }, []);
+  const [files, setFiles] = useState<File[]>([]);
+
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      setFiles((prevFiles) => [
+        ...prevFiles,
+        ...acceptedFiles.map((file) =>
+          Object.assign(file, { preview: URL.createObjectURL(file) })
+        ),
+      ]);
+    },
+    [setFiles]
+  );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const dropZoneRef = useRef<HTMLDivElement>(null);
@@ -52,16 +64,26 @@ export default function FileDropZone({
         {...getRootProps({
           ref: dropZoneRef,
           className:
-            "h-full w-full bg-gray-200 flex flex-col justify-center items-center shadow-brand rounded-2xl",
+            "h-full w-full bg-gray-200 flex flex-col justify-center items-center shadow-transition rounded-4xl",
         })}
       >
         <h2 className="h2">File Drop Zone</h2>
-        <RiUploadCloud2Fill size={175} />
+        {files.length > 0 && (
+          <div className="w-3/4 mx-auto">
+            <h4 className="h4 text-center">selected files: </h4>
+            <ul className="list-disc list-inside">
+              {files.map((file) => (
+                <li key={file.name}>{file.name}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {files.length === 0 && <RiUploadCloud2Fill size={175} />}
         <input {...getInputProps()} />
         {isDragActive ? (
-          <p className="p">Drop the files here ...</p>
+          <p className="p mt-10">Drop the files here ...</p>
         ) : (
-          <p className="p">
+          <p className="p mt-10">
             Drag and drop some files here, or click to select files
           </p>
         )}
