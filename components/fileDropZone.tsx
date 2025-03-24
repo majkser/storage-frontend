@@ -37,30 +37,35 @@ export default function FileDropZone({
 
   return (
     <div
-      {...getRootProps({
-        ref: dropZoneRef,
-        className: cn(
-          "absolute top-0 left-0 translate-x-1/2 translate-y-1/2 w-1/2 h-1/2 bg-gray-200 flex flex-col justify-center items-center shadow-brand rounded-2xl",
-          !isDropZoneOpen && "hidden"
-        ),
-      })}
+      className={cn(
+        "absolute top-0 left-0 translate-x-1/2 translate-y-1/2 w-1/2 h-1/2",
+        !isDropZoneOpen && "hidden"
+      )}
     >
-      <h2 className="h2">File Drop Zone</h2>
-      <RiUploadCloud2Fill size={175} />
       <div
         onClick={() => setIsDropZoneOpen(false)}
-        className="absolute top-0 right-0 mr-5 mt-4 cursor-pointer transition-colors duration-300 hover:text-red-600"
+        className="z-50 absolute top-0 right-0 mr-5 mt-4 cursor-pointer transition-colors duration-300 hover:text-red-600"
       >
         <IoIosCloseCircle size={40} />
       </div>
-      <input {...getInputProps()} />
-      {isDragActive ? (
-        <p className="p">Drop the files here ...</p>
-      ) : (
-        <p className="p">
-          Drag and drop some files here, or click to select files
-        </p>
-      )}
+      <div
+        {...getRootProps({
+          ref: dropZoneRef,
+          className:
+            "h-full w-full bg-gray-200 flex flex-col justify-center items-center shadow-brand rounded-2xl",
+        })}
+      >
+        <h2 className="h2">File Drop Zone</h2>
+        <RiUploadCloud2Fill size={175} />
+        <input {...getInputProps()} />
+        {isDragActive ? (
+          <p className="p">Drop the files here ...</p>
+        ) : (
+          <p className="p">
+            Drag and drop some files here, or click to select files
+          </p>
+        )}
+      </div>
     </div>
   );
 }
