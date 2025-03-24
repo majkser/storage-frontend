@@ -5,6 +5,7 @@ import { RiUploadCloud2Fill } from "react-icons/ri";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useEffect, useRef, useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { Button } from "./ui/button";
 
 export default function FileDropZone({
   isDropZoneOpen,
@@ -64,7 +65,7 @@ export default function FileDropZone({
         {...getRootProps({
           ref: dropZoneRef,
           className:
-            "h-full w-full bg-gray-200 flex flex-col justify-center items-center shadow-transition rounded-4xl",
+            "h-full w-full bg-gray-200 flex flex-col justify-center items-center shadow-transition rounded-4xl overflow-hidden",
         })}
       >
         <h2 className="h2">File Drop Zone</h2>
@@ -73,7 +74,23 @@ export default function FileDropZone({
             <h4 className="h4 text-center">selected files: </h4>
             <ul className="list-disc list-inside">
               {files.map((file) => (
-                <li key={file.name}>{file.name}</li>
+                <div key={file.name} className="flex justify-between my-1">
+                  <li>{file.name}</li>
+                  <Button
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setFiles((prevFiles) =>
+                        prevFiles.filter(
+                          (prevFile) => prevFile.name !== file.name
+                        )
+                      );
+                    }}
+                    variant="destructive"
+                    size="sm"
+                  >
+                    <p className="p">remove</p>
+                  </Button>
+                </div>
               ))}
             </ul>
           </div>
