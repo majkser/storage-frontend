@@ -12,9 +12,22 @@
   .bg-brand {
     background-color: #3fcda0;
   }
-  
+
   .border-brand {
     border-color: #3fcda0;
+  }
+
+  .shadow-brand {
+    filter: drop-shadow(0 0 1rem #3fcda0);
+  }
+
+  .shadow-transition {
+    filter: drop-shadow(0 0 1rem #3fcda0);
+    transition: filter 0.3s ease-in-out;
+  }
+
+  .shadow-transition:hover {
+    filter: drop-shadow(0 0 2.5rem #3fcda0);
   }
 
   .h1 {
