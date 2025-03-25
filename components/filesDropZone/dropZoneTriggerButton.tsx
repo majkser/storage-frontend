@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import FileDropZone from "@/components/fileDropZone";
+import FileDropZone from "@/components/filesDropZone/fileDropZone";
 import { useState } from "react";
 
 export default function DropZoneTriggerButton() {

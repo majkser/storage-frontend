@@ -5,7 +5,7 @@ import { RiUploadCloud2Fill } from "react-icons/ri";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useEffect, useRef, useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 export default function FileDropZone({
   isDropZoneOpen,

@@ -1,6 +1,6 @@
-import LoginSidebar from "@/components/loginSidebar";
-import Login from "@/components/login";
-import MobileLoginSidebar from "@/components/mobileLoginSidebar";
+import LoginSidebar from "@/components/login/loginSidebar";
+import Login from "@/components/login/login";
+import MobileLoginSidebar from "@/components/login/mobileLoginSidebar";
 
 export default function page() {
   return (

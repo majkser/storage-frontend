@@ -1,4 +1,4 @@
-import DropZoneTriggerButton from "@/components/dropZoneTriggerButton";
+import DropZoneTriggerButton from "@/components/filesDropZone/dropZoneTriggerButton";
 
 export default function Home() {
   return (
