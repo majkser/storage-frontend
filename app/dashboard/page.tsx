@@ -1,4 +1,3 @@
-// app/dashboard/page.tsx
 import { SearchBar } from "@/components/dashboard/search-bar"
 import { UploadButton } from "@/components/dashboard/upload-button"
 import { StorageUsage } from "@/components/dashboard/storage-usage"
@@ -7,7 +6,7 @@ import { StorageCategories } from "@/components/dashboard/storage-categories"
 
 export default function DashboardPage() {
   return (
-    <div className="p-6">
+    <div className="p-6 pt-0 md:pt-6">
       {/* Header with search and upload */}
       <div className="flex justify-between items-center mb-8">
         <SearchBar />

@@ -4,7 +4,7 @@ export function StorageCategories() {
   const categories = [
     { name: "Documents", icon: FileText, size: "164.9 MB", color: "bg-red-500/20", iconColor: "text-red-500" },
     { name: "Images", icon: ImageIcon, size: "16.3 MB", color: "bg-blue-500/20", iconColor: "text-blue-500" },
-    { name: "Media", icon: Film, size: "353.2 MB", color: "bg-[#3fcda0]/20", iconColor: "text-[#3fcda0]" },
+    { name: "Media", icon: Film, size: "353.2 MB", color: "bg-brand", iconColor: "text-white" },
     { name: "Others", icon: MoreHorizontal, size: "16.0 MB", color: "bg-purple-500/20", iconColor: "text-purple-500" },
   ]
 
@@ -17,8 +17,8 @@ export function StorageCategories() {
           >
             <category.icon className="h-6 w-6" />
           </div>
-          <h3 className="text-lg font-medium text-white">{category.size}</h3>
-          <p className="text-muted-foreground">{category.name}</p>
+          <h3 className="h6 text-white">{category.size}</h3>
+          <p className="body-small text-muted-foreground">{category.name}</p>
         </div>
       ))}
     </div>

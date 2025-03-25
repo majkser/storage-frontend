@@ -7,7 +7,7 @@ export function SearchBar() {
       <input 
         type="text" 
         placeholder="Search..." 
-        className="w-full pl-10 pr-4 py-2 rounded-full bg-secondary/50 text-foreground border-none focus:outline-none focus:ring-2 focus:ring-[#3fcda0]"
+        className="w-full pl-10 pr-4 py-2 rounded-full bg-secondary/50 text-foreground border-none focus:outline-none focus:ring-2 focus:ring-brand"
       />
     </div>
   )
