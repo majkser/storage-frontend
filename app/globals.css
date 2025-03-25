@@ -8,8 +8,13 @@
   .text-brand {
     color: #3fcda0;
   }
+
   .bg-brand {
     background-color: #3fcda0;
+  }
+
+  .border-brand {
+    border-color: #3fcda0;
   }
 
   .shadow-brand {
@@ -104,6 +109,8 @@
 }
 
 :root {
+  --theme-green: #2AC088;
+  --theme-dark: #121212;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -139,6 +146,8 @@
 }
 
 .dark {
+  --theme-green: #2AC088;
+  --theme-dark: #121212;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
