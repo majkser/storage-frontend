@@ -19,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
-      <body className={`${tektur.className} antialiased`}>{children}</body>
+      <body className={`${tektur.className} antialiased bg-black`}>
+        {children}
+      </body>
     </html>
   );
 }
