@@ -3,7 +3,6 @@
 //import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { FcGoogle } from "react-icons/fc";
 
 export default function Login() {
@@ -44,29 +43,8 @@ export default function Login() {
             // disabled={isLoading}
           >
             <FcGoogle className="h-5 w-5" />
-            {/* <span>{isLoading ? "Connecting..." : "Continue with Google"}</span> */}
+            <p className="p text-white">Continue with Google</p>
           </Button>
-
-          <div className="flex items-center gap-2">
-            <Separator className="flex-1 bg-gray-800" />
-            <span className="text-xs text-gray-500">OR</span>
-            <Separator className="flex-1 bg-gray-800" />
-          </div>
-
-          <div className="space-y-4">
-            <Button className="w-full bg-brand hover:bg-brand/90 text-black font-medium h-12 rounded-lg">
-              Sign in with Email
-            </Button>
-
-            <div className="text-center">
-              <p className="text-sm text-gray-500">
-                Dont have an account?{" "}
-                <a href="#" className="text-brand hover:underline">
-                  Sign up
-                </a>
-              </p>
-            </div>
-          </div>
         </div>
       </Card>
     </div>
