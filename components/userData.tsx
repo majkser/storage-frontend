@@ -1,16 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { getUser, User } from "@/getUser";
 import Image from "next/image";
 import { FaUserSecret } from "react-icons/fa";
+import { authContext } from "@/context/authContext";
+import { useContext } from "react";
 
 export default function UserData() {
-  const [user, setUser] = useState<User | null>(null);
+  const { user, loading } = useContext(authContext);
 
-  useEffect(() => {
-    getUser().then((user) => setUser(user));
-  }, []);
+  if (loading) {
+    return <h1 className="p text-white">Loading...</h1>;
+  }
+
+  if (!user) {
+    return <h1 className="p text-white">No user found</h1>;
+  }
 
   return (
     <div>

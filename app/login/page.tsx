@@ -3,26 +3,18 @@
 import LoginSidebar from "@/components/login/loginSidebar";
 import Login from "@/components/login/login";
 import MobileLoginSidebar from "@/components/login/mobileLoginSidebar";
-import { useEffect } from "react";
-import { getUser } from "@/getUser";
+import { useContext } from "react";
+import { authContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
   const router = useRouter();
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        await getUser();
-        if (router) router.push("/");
-      } catch (error) {
-        //stay on login page
-        console.log(error);
-      }
-    };
+  const { user } = useContext(authContext);
 
-    checkAuth();
-  }, [router]);
+  if (user) {
+    router.push("/");
+  }
 
   return (
     <div className="bg-black w-full h-screen text-white text-center sm:grid sm:grid-cols-8 overflow-hidden">

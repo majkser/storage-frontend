@@ -2,26 +2,11 @@
 
 import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import axios from "axios";
+import { authContext } from "@/context/authContext";
+import { useContext } from "react";
 
 export function SidebarFooter() {
-  const router = useRouter();
-
-  const handleSignOut = async () => {
-    try {
-      await axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/logout`,
-        null,
-        {
-          withCredentials: true,
-        }
-      );
-      router.push("/login");
-    } catch (error) {
-      console.log("Sign out error:", error);
-    }
-  };
+  const { handleSignOut } = useContext(authContext);
 
   return (
     <div className="p-4 border-t border-white/10">

@@ -1,8 +1,8 @@
-import { SearchBar } from "@/components/dashboard/search-bar"
-import { UploadButton } from "@/components/dashboard/upload-button"
-import { StorageUsage } from "@/components/dashboard/storage-usage"
-import { RecentFiles } from "@/components/dashboard/recent-files"
-import { StorageCategories } from "@/components/dashboard/storage-categories"
+import { SearchBar } from "@/components/dashboard/search-bar";
+import { UploadButton } from "@/components/dashboard/upload-button";
+import { StorageUsage } from "@/components/dashboard/storage-usage";
+import { RecentFiles } from "@/components/dashboard/recent-files";
+import { StorageCategories } from "@/components/dashboard/storage-categories";
 
 export default function DashboardPage() {
   return (
@@ -21,5 +21,5 @@ export default function DashboardPage() {
 
       <StorageCategories />
     </div>
-  )
+  );
 }
