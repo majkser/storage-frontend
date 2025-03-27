@@ -6,21 +6,6 @@ import { Card } from "@/components/ui/card";
 import { FcGoogle } from "react-icons/fc";
 
 export default function Login() {
-  // const [isLoading, setIsLoading] = useState(false);
-
-  // const handleGoogleLogin = async () => {
-  //   setIsLoading(true);
-  //   // Implement your Google authentication logic here
-  //   try {
-  //     // Example: await signInWithGoogle()
-  //     console.log("Logging in with Google...");
-  //   } catch (error) {
-  //     console.error("Google login error:", error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
-
   const handleGoogleLogin = async () => {
     window.location.href = `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/google`;
   };
