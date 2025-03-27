@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { FaUserSecret } from "react-icons/fa";
 import { authContext } from "@/context/authContext";
 import { useContext } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function UserData() {
   const { user, loading } = useContext(authContext);
@@ -22,13 +22,10 @@ export default function UserData() {
       <h1 className="p text-white">{user?.id}</h1>
       <h1 className="p text-white">{user?.username}</h1>
       {user?.photo ? (
-        <Image
-          src={user.photo}
-          alt="User Photo"
-          width={100}
-          height={100}
-          unoptimized
-        />
+        <Avatar>
+          <AvatarImage src={user.photo} alt="@shadcn" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
       ) : (
         <FaUserSecret color="white" size={100} />
       )}
