@@ -54,7 +54,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } finally {
       setTimeout(() => {
         setLoadingLogOut(false);
-      }, 7000);
+      }, 5000);
     }
   };
 
