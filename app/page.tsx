@@ -23,7 +23,10 @@ export default function Home() {
     //change h for full later
 
     <div className="flex align-center justify-center h-screen w-full bg-black">
-      <DropZoneTriggerButton />
+      {user.id === "ade76656-0a5c-11f0-bf40-da3579bf5464" && (
+        <DropZoneTriggerButton />
+      )}
+      {/* later change for better protection(role based access and .env) */}
       <UserData />
       <SidebarFooter />
     </div>
