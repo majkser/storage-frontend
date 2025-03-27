@@ -29,6 +29,3 @@ export default function Home() {
     </div>
   );
 }
-
-//TODO: change in loading component 3 dots in text to animate
-//TODO: change login auth for context
