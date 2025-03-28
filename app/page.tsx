@@ -29,3 +29,5 @@ export default function Home() {
     </div>
   );
 }
+
+//implement main page accessible for evryone - brief description of the app with link to login

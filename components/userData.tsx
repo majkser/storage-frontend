@@ -24,7 +24,7 @@ export default function UserData() {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       ) : (
-        <FaUserSecret color="white" size={100} />
+        <FaUserSecret color="white" size={25} />
       )}
       <h1 className="p text-white">{user?.username}</h1>
     </div>
