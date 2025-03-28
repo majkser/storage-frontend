@@ -57,7 +57,7 @@ export default function FileDropZone({
     >
       <div
         onClick={() => setIsDropZoneOpen(false)}
-        className="z-50 absolute top-0 right-0 mr-5 mt-4 cursor-pointer transition-colors duration-300 hover:text-red-600"
+        className="z-[1000px] absolute top-0 right-0 mr-5 mt-4 cursor-pointer transition-colors duration-300 hover:text-red-600"
       >
         <IoIosCloseCircle size={40} />
       </div>

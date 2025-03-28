@@ -17,10 +17,7 @@ export default function UserData() {
   }
 
   return (
-    <div>
-      <h1 className="p text-white">{user?.email}</h1>
-      <h1 className="p text-white">{user?.id}</h1>
-      <h1 className="p text-white">{user?.username}</h1>
+    <div className="flex items-center justify-start gap-4 p-4 bg-black overflow-hidden">
       {user?.photo ? (
         <Avatar>
           <AvatarImage src={user.photo} alt="@shadcn" />
@@ -29,6 +26,7 @@ export default function UserData() {
       ) : (
         <FaUserSecret color="white" size={100} />
       )}
+      <h1 className="p text-white">{user?.username}</h1>
     </div>
   );
 }

@@ -13,7 +13,7 @@ export default function Page() {
   const { user } = useContext(authContext);
 
   if (user) {
-    router.push("/");
+    router.push("/dashboard");
   }
 
   return (

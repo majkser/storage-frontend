@@ -1,11 +1,14 @@
-import { Upload } from 'lucide-react'
-import { Button } from "@/components/ui/button"
+import { authContext } from "@/context/authContext";
+import { useContext } from "react";
+import DropZoneTriggerButton from "@/components/filesDropZone/dropZoneTriggerButton";
 
 export function UploadButton() {
+  const { user } = useContext(authContext);
+
+  if (!user) return null;
   return (
-    <Button className="bg-brand hover:bg-brand/90 text-white">
-      <Upload className="mr-2 h-4 w-4" />
-      <span>Upload</span>
-    </Button>
-  )
+    <div className="flex items-center space-x-4">
+      {user.isAdmin && <DropZoneTriggerButton />}
+    </div>
+  );
 }
