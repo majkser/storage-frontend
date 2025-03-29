@@ -13,6 +13,14 @@
     background-color: #3fcda0;
   }
 
+  .bg-brand-light {
+    background-color: rgba(63, 205, 160, 0.4);
+  }
+
+  .decoration-brand {
+    text-decoration-color: #3fcda0;
+  }
+
   .border-brand {
     border-color: #3fcda0;
   }
@@ -106,10 +114,14 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
+
+  .span {
+    font-size: 1.25rem;
+  }
 }
 
 :root {
-  --theme-green: #2AC088;
+  --theme-green: #2ac088;
   --theme-dark: #121212;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -146,7 +158,7 @@
 }
 
 .dark {
-  --theme-green: #2AC088;
+  --theme-green: #2ac088;
   --theme-dark: #121212;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
