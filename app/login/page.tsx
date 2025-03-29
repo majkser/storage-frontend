@@ -3,17 +3,25 @@
 import LoginSidebar from "@/components/login/loginSidebar";
 import Login from "@/components/login/login";
 import MobileLoginSidebar from "@/components/login/mobileLoginSidebar";
+import Loading from "@/components/loading";
 import { useContext } from "react";
 import { authContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Page() {
   const router = useRouter();
 
-  const { user } = useContext(authContext);
+  const { user, loading } = useContext(authContext);
 
-  if (user) {
-    router.push("/dashboard");
+  useEffect(() => {
+    if (user && !loading) {
+      router.push("/dashboard");
+    }
+  }, [user, router, loading]);
+
+  if (loading) {
+    return <Loading />;
   }
 
   return (
