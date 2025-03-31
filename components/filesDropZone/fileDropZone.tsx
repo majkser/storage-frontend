@@ -59,7 +59,7 @@ export default function FileDropZone({
         onClick={() => setIsDropZoneOpen(false)}
         className="z-20 absolute top-0 right-0 mr-5 mt-4 cursor-pointer transition-colors duration-300 hover:text-red-600"
       >
-        <IoIosCloseCircle size={40} />
+        <IoIosCloseCircle size={40} className="h-1/2" />
       </div>
       <div
         {...getRootProps({
@@ -70,9 +70,9 @@ export default function FileDropZone({
       >
         <h2 className="h2">File Drop Zone</h2>
         {files.length > 0 && (
-          <div className="w-3/4 mx-auto">
+          <div className="w-3/4 h-1/2 mx-auto flex flex-col">
             <h4 className="h4 text-center">selected files: </h4>
-            <ul className="list-disc list-inside">
+            <ul className="list-disc list-inside overflow-y-auto h-full pr-5">
               {files.map((file) => (
                 <div key={file.name} className="flex justify-between my-1">
                   <li>{file.name}</li>
