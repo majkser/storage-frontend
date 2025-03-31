@@ -6,6 +6,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { useEffect, useRef, useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "../ui/button";
+import { Progress } from "../ui/progress";
 
 export default function FileDropZone({
   isDropZoneOpen,
@@ -15,6 +16,9 @@ export default function FileDropZone({
   setIsDropZoneOpen: (isOpen: boolean) => void;
 }) {
   const [files, setFiles] = useState<File[]>([]);
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [error, setError] = useState<string | null>(null);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -27,15 +31,22 @@ export default function FileDropZone({
     },
     [setFiles]
   );
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const dropZoneRef = useRef<HTMLDivElement>(null);
+
+  const handleUpload = async (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setUploading(true);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         dropZoneRef.current &&
-        !dropZoneRef.current.contains(event.target as Node)
+        !dropZoneRef.current.contains(event.target as Node) &&
+        !uploading
       ) {
         setIsDropZoneOpen(false);
       }
@@ -46,7 +57,7 @@ export default function FileDropZone({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isDropZoneOpen, setIsDropZoneOpen]);
+  }, [isDropZoneOpen, setIsDropZoneOpen, uploading]);
 
   return (
     <div
@@ -64,8 +75,10 @@ export default function FileDropZone({
       <div
         {...getRootProps({
           ref: dropZoneRef,
-          className:
+          className: cn(
             "h-full w-full bg-gray-200 flex flex-col justify-center items-center shadow-transition rounded-4xl overflow-hidden",
+            uploading && "pointer-events-none"
+          ),
         })}
       >
         <h2 className="h2">File Drop Zone</h2>
@@ -97,12 +110,31 @@ export default function FileDropZone({
         )}
         {files.length === 0 && <RiUploadCloud2Fill size={175} />}
         <input {...getInputProps()} />
-        {isDragActive ? (
-          <p className="p mt-10">Drop the files here ...</p>
+        {files.length === 0 ? (
+          isDragActive ? (
+            <p className="p mt-10">Drop the files here ...</p>
+          ) : (
+            <p className="p mt-10">
+              Drag and drop some files here, or click to select files
+            </p>
+          )
         ) : (
-          <p className="p mt-10">
-            Drag and drop some files here, or click to select files
-          </p>
+          <div className="mt-4 flex flex-col gap-2">
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+
+            {uploading && (
+              <Progress value={uploadProgress} className="w-full h-2" />
+            )}
+
+            <Button
+              onClick={handleUpload}
+              variant="default"
+              disabled={uploading || files.length === 0}
+              className="w-full"
+            >
+              {uploading ? `Uploading... ${uploadProgress}%` : "Upload Files"}
+            </Button>
+          </div>
         )}
       </div>
     </div>
