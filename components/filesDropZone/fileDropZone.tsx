@@ -39,6 +39,11 @@ export default function FileDropZone({
   const handleUpload = async (event: React.MouseEvent) => {
     event.stopPropagation();
     setUploading(true);
+
+    const formData: FormData = new FormData();
+    files.forEach((file) => {
+      formData.append("files", file);
+    });
   };
 
   useEffect(() => {
