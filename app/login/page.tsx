@@ -3,7 +3,6 @@
 import LoginSidebar from "@/components/login/loginSidebar";
 import Login from "@/components/login/login";
 import MobileLoginSidebar from "@/components/login/mobileLoginSidebar";
-import Loading from "@/app/loading";
 import { useContext } from "react";
 import { authContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
