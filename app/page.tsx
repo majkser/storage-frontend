@@ -1,7 +1,4 @@
-"use client";
-
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import LoginRedirectButton from "@/components/landingPage/loginRedirectButton";
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
 import Karol from "@/public/Karol_Krupiak-koncert.jpg";
 import Kartky from "@/public/Kartky-koncert.jpg";
@@ -30,8 +27,6 @@ import podejdePotem2 from "@/public/podejdePotem2.png";
 import cali from "@/public/cali.png";
 
 export default function Home() {
-  const router = useRouter();
-
   const images = [
     Karol.src,
     Karol.src,
@@ -75,14 +70,7 @@ export default function Home() {
         Click the button below to login and access your files.
       </p>
 
-      <div
-        onClick={() => router.push("/login")}
-        className="relative z-20 flex flex-wrap items-center justify-center gap-4 pt-4"
-      >
-        <Button variant="brand" size="lg">
-          <span className="span">Login</span>
-        </Button>
-      </div>
+      <LoginRedirectButton />
 
       {/* overlay */}
       <div className="absolute inset-0 z-10 h-full w-full bg-black/70" />
