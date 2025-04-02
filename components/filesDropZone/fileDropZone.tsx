@@ -7,6 +7,8 @@ import { useEffect, useRef, useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "../ui/button";
 import { Progress } from "../ui/progress";
+import axios from "axios";
+import SuccessUpload from "@/components/filesDropZone/successUpload";
 
 export default function FileDropZone({
   isDropZoneOpen,
@@ -19,6 +21,7 @@ export default function FileDropZone({
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const [uploadedSuccessfully, setUploadedSuccessfully] = useState(false);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -44,6 +47,31 @@ export default function FileDropZone({
     files.forEach((file) => {
       formData.append("files", file);
     });
+
+    try {
+      await axios.post("api/files/upload", formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        onUploadProgress: (ProgressEvent) => {
+          const percentCompleted = Math.round(
+            (ProgressEvent.loaded * 100) / (ProgressEvent.total || 1)
+          );
+          setUploadProgress(percentCompleted);
+        },
+      });
+
+      setFiles([]);
+      setUploadProgress(0);
+      setUploadedSuccessfully(true);
+    } catch (error) {
+      console.error("Error uploading files:", error);
+      setError("Error uploading files. Please try again.");
+    } finally {
+      setUploading(false);
+      setIsDropZoneOpen(false);
+    }
   };
 
   useEffect(() => {
@@ -63,6 +91,18 @@ export default function FileDropZone({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isDropZoneOpen, setIsDropZoneOpen, uploading]);
+
+  // setTimeout(() => {
+  //   setUploadedSuccessfully(true);
+  // }, 5000);
+
+  // setTimeout(() => {
+  //   setUploadedSuccessfully(false);
+  // }, 8000);
+
+  if (uploadedSuccessfully) {
+    return <SuccessUpload />;
+  }
 
   return (
     <div
