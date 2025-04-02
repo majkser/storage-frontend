@@ -3,7 +3,7 @@
 import LoginSidebar from "@/components/login/loginSidebar";
 import Login from "@/components/login/login";
 import MobileLoginSidebar from "@/components/login/mobileLoginSidebar";
-import Loading from "@/components/loading";
+import Loading from "@/app/loading";
 import { useContext } from "react";
 import { authContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
@@ -19,10 +19,6 @@ export default function Page() {
       router.push("/dashboard");
     }
   }, [user, router, loading]);
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <div className="bg-black w-full h-screen text-white text-center sm:grid sm:grid-cols-8 overflow-hidden">

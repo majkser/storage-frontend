@@ -11,7 +11,7 @@ import { MobileMenu } from "@/components/sidebar/mobile-menu";
 import { authContext } from "@/context/authContext";
 import { useContext } from "react";
 import UserNotLogedIn from "@/components/userNotLogedIn";
-import Loading from "@/components/loading";
+import Loading from "@/app/loading";
 
 export default function DashboardPage() {
   const { user, loading, loadingLogOut } = useContext(authContext);

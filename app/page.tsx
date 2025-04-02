@@ -3,9 +3,6 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
-import { useContext } from "react";
-import { authContext } from "@/context/authContext";
-import Loading from "@/components/loading";
 import Karol from "@/public/Karol_Krupiak-koncert.jpg";
 import Kartky from "@/public/Kartky-koncert.jpg";
 import breaking_bad from "@/public/breaking-bad-9.jpg";
@@ -34,11 +31,6 @@ import cali from "@/public/cali.png";
 
 export default function Home() {
   const router = useRouter();
-  const { loading } = useContext(authContext);
-
-  if (loading) {
-    return <Loading />;
-  }
 
   const images = [
     Karol.src,
