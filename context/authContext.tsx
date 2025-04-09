@@ -43,7 +43,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     router.push("/login");
     try {
       await axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/logout`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/logout`,
         null,
         {
           withCredentials: true,

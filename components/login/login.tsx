@@ -7,7 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 
 export default function Login() {
   const handleGoogleLogin = async () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/google`;
+    window.location.href = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/google`;
   };
 
   return (
