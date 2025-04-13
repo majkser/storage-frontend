@@ -19,13 +19,10 @@ export default function UserData() {
   return (
     <div className="flex items-center justify-start gap-4 p-4 bg-black overflow-hidden">
       <Avatar>
-        {user?.photo ? (
-          <AvatarImage src={user.photo} alt="user profile picture" />
-        ) : (
-          <AvatarFallback>
-            <FaUserSecret color="black" size={25} />
-          </AvatarFallback>
-        )}
+        <AvatarImage src={user.photo} alt="user profile picture" />
+        <AvatarFallback>
+          <FaUserSecret color="black" size={25} />
+        </AvatarFallback>
       </Avatar>
       <h1 className="p text-white">{user?.username}</h1>
     </div>
