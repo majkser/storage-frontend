@@ -45,22 +45,26 @@ export default function FileDropZone({
 
     const formData: FormData = new FormData();
     files.forEach((file) => {
-      formData.append("files", file);
+      formData.append("file", file);
     });
 
     try {
-      await axios.post("api/files/upload", formData, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        onUploadProgress: (ProgressEvent) => {
-          const percentCompleted = Math.round(
-            (ProgressEvent.loaded * 100) / (ProgressEvent.total || 1)
-          );
-          setUploadProgress(percentCompleted);
-        },
-      });
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/files/upload`,
+        formData,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          onUploadProgress: (ProgressEvent) => {
+            const percentCompleted = Math.round(
+              (ProgressEvent.loaded * 100) / (ProgressEvent.total || 1)
+            );
+            setUploadProgress(percentCompleted);
+          },
+        }
+      );
 
       setFiles([]);
       setUploadProgress(0);

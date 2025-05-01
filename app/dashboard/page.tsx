@@ -12,6 +12,7 @@ import { authContext } from "@/context/authContext";
 import { useContext } from "react";
 import UserNotLogedIn from "@/components/userNotLogedIn";
 import Loading from "@/app/loading";
+import UploadedFiles from "@/components/uploadedFiles";
 
 export default function DashboardPage() {
   const { user, loading, loadingLogOut } = useContext(authContext);
@@ -46,6 +47,7 @@ export default function DashboardPage() {
             </div>
             <StorageCategories />
           </div>
+          <UploadedFiles />
         </main>
       </div>
     </SidebarProvider>
