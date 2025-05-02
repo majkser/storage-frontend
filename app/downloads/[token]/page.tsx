@@ -4,6 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { AiOutlineFileUnknown } from "react-icons/ai";
 import { FaPhotoVideo } from "react-icons/fa";
 import { LuFileMusic } from "react-icons/lu";
+import DownloadButton from "@/components/downloads/downloadButton";
 
 export default async function page({
   params,
@@ -14,7 +15,7 @@ export default async function page({
 
   return (
     <BackgroundBeamsWithCollision className="h-screen w-screen">
-      <div className="z-20">
+      <div className="z-20 flex h-screen w-screen flex-col items-center justify-center gap-4">
         <h1 className="h1 text-white text-center">{token}</h1>
         <ScrollArea className="h-[500px] w-[500px] bg-black/75">
           <div className="flex flex-col items-center justify-center gap-4 p-4 text-white">
@@ -26,11 +27,12 @@ export default async function page({
             <Separator />
             <p className="">{token}</p>
             <Separator />
-            <AiOutlineFileUnknown size={25} />
-            <FaPhotoVideo size={25} />
-            <LuFileMusic size={25} />
+            <AiOutlineFileUnknown size={25} className="text-brand" />
+            <FaPhotoVideo size={25} className="text-brand" />
+            <LuFileMusic size={25} className="text-brand" />
           </div>
         </ScrollArea>
+        <DownloadButton />
       </div>
     </BackgroundBeamsWithCollision>
   );
