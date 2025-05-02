@@ -1,6 +1,9 @@
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { AiOutlineFileUnknown } from "react-icons/ai";
+import { FaPhotoVideo } from "react-icons/fa";
+import { LuFileMusic } from "react-icons/lu";
 
 export default async function page({
   params,
@@ -22,6 +25,10 @@ export default async function page({
             </p>
             <Separator />
             <p className="">{token}</p>
+            <Separator />
+            <AiOutlineFileUnknown size={25} />
+            <FaPhotoVideo size={25} />
+            <LuFileMusic size={25} />
           </div>
         </ScrollArea>
       </div>
