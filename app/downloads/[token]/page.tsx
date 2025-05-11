@@ -6,6 +6,7 @@ import { FaPhotoVideo } from "react-icons/fa";
 import { LuFileMusic } from "react-icons/lu";
 import DownloadButton from "@/components/downloads/downloadButton";
 import { Button } from "@/components/ui/button";
+import { notFound } from "next/navigation";
 
 export default async function page({
   params,
@@ -13,6 +14,10 @@ export default async function page({
   params: Promise<{ token: string }>;
 }) {
   const { token } = await params;
+
+  if (token.length !== 36) {
+    notFound();
+  }
 
   return (
     <BackgroundBeamsWithCollision className="h-screen w-screen">
