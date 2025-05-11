@@ -1,18 +1,17 @@
 import axios from "axios";
 import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
-import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import { Copy } from "lucide-react";
 
-//TODO popover - must be wider !!!!
+//TODO pass to the generateLink fileId dynamically
 
 export default function GenerateLinkButton() {
-  const [link, setLink] = useState("");
+  const [token, setToken] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
   function handleCopyButtonClick() {
     navigator.clipboard.writeText(
-      `${process.env.NEXT_PUBLIC_DOWNLOAD_URL}/${link}`
+      `${process.env.NEXT_PUBLIC_DOWNLOAD_URL}/${token}`
     );
     setIsCopied(true);
     setTimeout(() => {
@@ -21,17 +20,19 @@ export default function GenerateLinkButton() {
   }
 
   async function generateLink(fileId: number) {
-    const token = uuidv4();
-    setLink(token);
-
     try {
-      axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/link/generate-link`,
-        { fileId: fileId, token: token },
-        {
-          withCredentials: true,
-        }
-      );
+      axios
+        .post(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/api/link/generate-link`,
+          { fileId: fileId },
+          {
+            withCredentials: true,
+          }
+        )
+        .then((response) => {
+          setToken(response.data.token);
+          console.log("Link generated:", response.data.token);
+        });
     } catch (error) {
       console.error("Error generating link:", error);
     }
@@ -40,19 +41,22 @@ export default function GenerateLinkButton() {
   return (
     <div>
       <Popover>
-        <PopoverTrigger onClick={() => generateLink(1)}>
+        <PopoverTrigger
+          className="bg-gray-200 p-2 rounded-md hover:bg-gray-300 cursor-pointer mt-2"
+          onClick={() => generateLink(2)}
+        >
           Generate Link
         </PopoverTrigger>
         <PopoverContent>
-          <p>Link: {`${process.env.NEXT_PUBLIC_DOWNLOAD_URL}/${link}`}</p>
-          <div className="flex justify-start">
+          <p>Link: {`${process.env.NEXT_PUBLIC_DOWNLOAD_URL}/${token}`}</p>
+          <div className="flex justify-start items-center">
             <Copy
               size="25"
               className="mt-2 p-1 scale-125 rounded-sm hover:bg-gray-200 cursor-pointer"
               onClick={handleCopyButtonClick}
             />
             {isCopied && (
-              <p className="z-20 bg-gray-200 rounded-sm p-1.5 m-auto caption">
+              <p className="z-20 bg-gray-200 rounded-sm p-1 ml-2 mt-2 caption overflow-hidden">
                 copied to clipboard
               </p>
             )}
