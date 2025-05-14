@@ -7,6 +7,7 @@ import { LuFileMusic } from "react-icons/lu";
 import DownloadButton from "@/components/downloads/downloadButton";
 import { Button } from "@/components/ui/button";
 import { notFound } from "next/navigation";
+import axios from "axios";
 
 export default async function page({
   params,
@@ -19,10 +20,31 @@ export default async function page({
     notFound();
   }
 
+  let fileId: number | undefined;
+
+  try {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/link/${token}`,
+      {
+        withCredentials: true,
+      }
+    );
+
+    if (res.status !== 200) {
+      notFound();
+    }
+
+    fileId = parseInt(res.data.fileId);
+  } catch (error) {
+    console.error("Error fetching file:", error);
+    notFound();
+  }
+
   return (
     <BackgroundBeamsWithCollision className="h-screen w-screen">
       <div className="z-20 flex h-screen w-screen flex-col items-center justify-center gap-4">
         <h1 className="h1 text-white text-center">{token}</h1>
+        <h1 className="h1 text-white text-center">{fileId}</h1>
         <ScrollArea className="h-3/4 w-3/5 bg-black/75">
           <div className="flex flex-col items-center justify-center gap-4 p-4 text-white">
             <h1 className="h1">Token</h1>
