@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "axios";
 import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
 import { useState } from "react";
