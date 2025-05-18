@@ -9,11 +9,11 @@ export default function UserData() {
   const { user, loading } = useContext(authContext);
 
   if (loading) {
-    return <h1 className="p text-white">Loading...</h1>;
+    return <span className="span text-white m-auto">Loading...</span>;
   }
 
   if (!user) {
-    return <h1 className="p text-white">No user found</h1>;
+    return null;
   }
 
   return (
