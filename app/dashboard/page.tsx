@@ -1,5 +1,3 @@
-"use client";
-
 import { SearchBar } from "@/components/dashboard/search-bar";
 import { UploadButton } from "@/components/dashboard/upload-button";
 import { StorageUsage } from "@/components/dashboard/storage-usage";
@@ -8,23 +6,9 @@ import { StorageCategories } from "@/components/dashboard/storage-categories";
 import { Sidebar } from "@/components/ui/sidebar";
 import { SidebarProvider } from "@/components/sidebar/sidebar-context";
 import { MobileMenu } from "@/components/sidebar/mobile-menu";
-import { authContext } from "@/context/authContext";
-import { useContext } from "react";
-import UserNotLogedIn from "@/components/userNotLogedIn";
-import Loading from "@/app/loading";
 import UploadedFiles from "@/components/uploadedFiles";
 
 export default function DashboardPage() {
-  const { user, loading, loadingLogOut } = useContext(authContext);
-
-  if (loading || loadingLogOut) {
-    return <Loading />;
-  }
-
-  if (!user) {
-    return <UserNotLogedIn />;
-  }
-
   return (
     <SidebarProvider>
       <div className="flex h-screen">

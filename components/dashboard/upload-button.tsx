@@ -1,3 +1,5 @@
+"use client";
+
 import { authContext } from "@/context/authContext";
 import { useContext } from "react";
 import DropZoneTriggerButton from "@/components/filesDropZone/dropZoneTriggerButton";
