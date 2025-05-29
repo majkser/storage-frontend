@@ -4,9 +4,8 @@ import { Separator } from "@/components/ui/separator";
 import { AiOutlineFileUnknown } from "react-icons/ai";
 import { FaPhotoVideo } from "react-icons/fa";
 import { LuFileMusic } from "react-icons/lu";
-import DownloadButton from "@/components/downloads/downloadButton";
-import { Button } from "@/components/ui/button";
 import { notFound } from "next/navigation";
+import DownloadButton from "@/components/downloads/downloadButton";
 import axios from "axios";
 
 export default async function page({
@@ -22,6 +21,8 @@ export default async function page({
 
   let fileId: number | undefined;
 
+  //when file on the server will be implemented, change to not get the fileId
+  // but treat as middleware on backend and fetch whole file info
   try {
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/api/link/${token}`,
@@ -57,9 +58,8 @@ export default async function page({
                   </div>
                   <div className="flex items-center gap-2">
                     <p className="text-sm text-gray-400">1.77 GB</p>
-                    <Button variant="link" className="text-brand">
-                      Download
-                    </Button>
+                    <DownloadButton fileId={10} />
+                    {/* Replace 10 with the actual fileId when implemented !!!*/}
                   </div>
                 </div>
                 <Separator />
@@ -75,7 +75,6 @@ export default async function page({
             <LuFileMusic size={25} className="text-brand" />
           </div>
         </ScrollArea>
-        <DownloadButton />
       </div>
     </BackgroundBeamsWithCollision>
   );
