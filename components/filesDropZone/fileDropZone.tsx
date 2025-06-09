@@ -69,6 +69,9 @@ export default function FileDropZone({
       setFiles([]);
       setUploadProgress(0);
       setUploadedSuccessfully(true);
+      setTimeout(() => {
+        setUploadedSuccessfully(false);
+      }, 2000);
     } catch (error) {
       console.error("Error uploading files:", error);
       setError("Error uploading files. Please try again.");
