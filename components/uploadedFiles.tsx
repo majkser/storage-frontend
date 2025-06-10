@@ -1,6 +1,17 @@
 import React from "react";
 import GenerateLinkButton from "./generateLinkButton";
 import { Music, ImageIcon, Film, MoreHorizontal } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { ArrowDownUp } from "lucide-react";
+import { Button } from "./ui/button";
 
 export default function UploadedFiles() {
   const category = new Map([
@@ -40,7 +51,40 @@ export default function UploadedFiles() {
 
   return (
     <div className="w-full">
-      <h1 className="text-white h2 ml-24">Uploaded Files</h1>
+      <div className="ml-24 mt-4 mb-8">
+        <h1 className="text-white h2">Uploaded Files</h1>
+        <div className="flex items-center gap-2">
+          <Select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Sort" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Sort by:</SelectLabel>
+                <SelectItem value="Upload date">Upload date</SelectItem>
+                <SelectItem value="alphabetically">alphabetically</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <Button className="mr-12" variant={"default"}>
+            <ArrowDownUp className="text-gray-200 scale-125" />
+          </Button>
+          <Select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Filter" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Sort by:</SelectLabel>
+                <SelectItem value="Music">Music</SelectItem>
+                <SelectItem value="Videos">Videos</SelectItem>
+                <SelectItem value="Photos">Photos</SelectItem>
+                <SelectItem value="Others">Others</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
       <div className="w-3/4 flex flex-col mx-auto gap-4">
         <div className="bg-secondary/20 hover:bg-secondary/25 p-4 rounded-lg flex justify-between items-center md:flex-row flex-col">
           <div className="flex items-center justify-start gap-4">
