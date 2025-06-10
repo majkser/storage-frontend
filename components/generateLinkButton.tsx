@@ -41,7 +41,7 @@ export default function GenerateLinkButton() {
   }
 
   return (
-    <div>
+    <div className="mt-2 md:mt-0">
       <Popover>
         <PopoverTrigger
           className="bg-gray-200 p-2 rounded-md hover:bg-gray-300 cursor-pointer mt-2"

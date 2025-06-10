@@ -24,12 +24,12 @@ export default function DashboardPage() {
               <UploadButton />
             </div>
 
-            {/* Main content */}
+            {/* Main content
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <StorageUsage />
               <RecentFiles />
             </div>
-            <StorageCategories />
+            <StorageCategories /> */}
           </div>
           <UploadedFiles />
         </main>
