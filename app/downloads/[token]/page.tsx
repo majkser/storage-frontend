@@ -1,12 +1,10 @@
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import { AiOutlineFileUnknown } from "react-icons/ai";
-import { FaPhotoVideo } from "react-icons/fa";
-import { LuFileMusic } from "react-icons/lu";
 import { notFound } from "next/navigation";
 import DownloadButton from "@/components/downloads/downloadButton";
 import axios from "axios";
+import { Music, ImageIcon, Film, MoreHorizontal } from "lucide-react";
 
 export default async function page({
   params,
@@ -14,6 +12,41 @@ export default async function page({
   params: Promise<{ token: string }>;
 }) {
   const { token } = await params;
+
+  const category = new Map([
+    [
+      "Music",
+      {
+        icon: Music,
+        color: "bg-red-500/20",
+        iconColor: "text-red-500",
+      },
+    ],
+    [
+      "Images",
+      {
+        icon: ImageIcon,
+        color: "bg-blue-500/20",
+        iconColor: "text-blue-500",
+      },
+    ],
+    [
+      "Media",
+      {
+        icon: Film,
+        color: "bg-brand",
+        iconColor: "text-white",
+      },
+    ],
+    [
+      "Others",
+      {
+        icon: MoreHorizontal,
+        color: "bg-purple-500/20",
+        iconColor: "text-purple-500",
+      },
+    ],
+  ]);
 
   if (token.length !== 36) {
     notFound();
@@ -52,9 +85,20 @@ export default async function page({
             <ul className="w-full">
               <li>
                 <div className="flex w-full justify-between items-center mb-1">
-                  <div className="flex items-center gap-4">
-                    <FaPhotoVideo size={25} className="text-brand" />
-                    <span className="span text-gray-400">File name</span>
+                  <div className="flex items-center gap-4 mb-2">
+                    {(() => {
+                      const Icon = category.get("Images")?.icon; //make it dynamic when fetching files will be avilable
+                      return Icon ? (
+                        <div
+                          className={`h-12 w-12 rounded-full flex items-center justify-center ${
+                            category.get("Images")?.color
+                          } ${category.get("Images")?.iconColor}`}
+                        >
+                          <Icon className="h-6 w-6" />
+                        </div>
+                      ) : null;
+                    })()}
+                    <span className="text-2xl text-gray-400">File name</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <p className="text-sm text-gray-400">1.77 GB</p>
@@ -70,9 +114,6 @@ export default async function page({
                 <Separator />
               </li>
             </ul>
-            <AiOutlineFileUnknown size={25} className="text-brand" />
-            <FaPhotoVideo size={25} className="text-brand" />
-            <LuFileMusic size={25} className="text-brand" />
           </div>
         </ScrollArea>
       </div>

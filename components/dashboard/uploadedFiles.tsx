@@ -2,6 +2,7 @@ import React from "react";
 import GenerateLinkButton from "@/components/generateLinkButton";
 import { Music, ImageIcon, Film, MoreHorizontal } from "lucide-react";
 import SortAndFilter from "@/components/dashboard/sortAndFilter";
+import DownloadButton from "@/components/downloads/downloadButton";
 
 export default function UploadedFiles() {
   const category = new Map([
@@ -41,11 +42,11 @@ export default function UploadedFiles() {
 
   return (
     <div className="w-full">
-      <div className="ml-24 mt-4 mb-8">
+      <div className="ml-4 md:ml-24 mt-4 mb-8">
         <h1 className="text-white h2">Uploaded Files</h1>
         <SortAndFilter />
       </div>
-      <div className="w-3/4 flex flex-col mx-auto gap-4">
+      <div className="w-4/5 md:w-3/4 flex flex-col mx-auto gap-4">
         <div className="bg-secondary/20 hover:bg-secondary/25 p-4 rounded-lg flex justify-between items-center md:flex-row flex-col">
           <div className="flex items-center justify-start gap-4">
             {(() => {
@@ -63,9 +64,13 @@ export default function UploadedFiles() {
             <div>
               <h2 className="text-white text-2xl">File 1</h2>
               <p className="text-gray-400">Uploaded on: 2023-10-01</p>
+              <p className="text-sm text-gray-400">1.77 GB</p>
             </div>
           </div>
-          <GenerateLinkButton />
+          <div className="flex items-center flex-row md:flex-col gap-2 mt-2">
+            <GenerateLinkButton />
+            <DownloadButton fileId={10} label="Download" />
+          </div>
         </div>
         <div className="bg-secondary/20 hover:bg-secondary/25 p-4 rounded-lg">
           <h2 className="text-white">File 2</h2>
