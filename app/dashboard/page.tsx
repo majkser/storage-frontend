@@ -3,7 +3,7 @@ import { UploadButton } from "@/components/dashboard/upload-button";
 import { Sidebar } from "@/components/ui/sidebar";
 import { SidebarProvider } from "@/components/sidebar/sidebar-context";
 import { MobileMenu } from "@/components/sidebar/mobile-menu";
-import UploadedFiles from "@/components/uploadedFiles";
+import UploadedFiles from "@/components/dashboard/uploadedFiles";
 
 export default function DashboardPage() {
   return (
