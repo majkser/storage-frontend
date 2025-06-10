@@ -1,8 +1,5 @@
 import { SearchBar } from "@/components/dashboard/search-bar";
 import { UploadButton } from "@/components/dashboard/upload-button";
-import { StorageUsage } from "@/components/dashboard/storage-usage";
-import { RecentFiles } from "@/components/dashboard/recent-files";
-import { StorageCategories } from "@/components/dashboard/storage-categories";
 import { Sidebar } from "@/components/ui/sidebar";
 import { SidebarProvider } from "@/components/sidebar/sidebar-context";
 import { MobileMenu } from "@/components/sidebar/mobile-menu";
@@ -23,13 +20,6 @@ export default function DashboardPage() {
               <SearchBar />
               <UploadButton />
             </div>
-
-            {/* Main content
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <StorageUsage />
-              <RecentFiles />
-            </div>
-            <StorageCategories /> */}
           </div>
           <UploadedFiles />
         </main>
