@@ -10,10 +10,16 @@ import {
 import { ArrowDownUp } from "lucide-react";
 import { Button } from "../ui/button";
 
-export default function SortAndFilter() {
+export default function SortAndFilter({
+  handleSortChange,
+  handleFilterChange,
+}: {
+  handleSortChange?: (value: string) => void;
+  handleFilterChange?: (value: string) => void;
+}) {
   return (
     <div className="flex items-center gap-2">
-      <Select>
+      <Select onValueChange={handleSortChange}>
         <SelectTrigger className="w-[120px] md:w-[180px]">
           <SelectValue placeholder="Sort" />
         </SelectTrigger>
@@ -28,13 +34,13 @@ export default function SortAndFilter() {
       <Button className="mr-4 md:mr-12" variant={"default"}>
         <ArrowDownUp className="text-gray-200 scale-125" />
       </Button>
-      <Select>
+      <Select onValueChange={handleFilterChange}>
         <SelectTrigger className="w-[120px] md:w-[180px]">
           <SelectValue placeholder="Filter" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Sort by:</SelectLabel>
+            <SelectLabel>Filter by:</SelectLabel>
             <SelectItem value="Music">Music</SelectItem>
             <SelectItem value="Videos">Videos</SelectItem>
             <SelectItem value="Photos">Photos</SelectItem>
