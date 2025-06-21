@@ -48,8 +48,8 @@ export default function SortAndFilter({
           <SelectGroup>
             <SelectLabel>Filter by:</SelectLabel>
             <SelectItem value="Music">Music</SelectItem>
-            <SelectItem value="Videos">Videos</SelectItem>
-            <SelectItem value="Photos">Photos</SelectItem>
+            <SelectItem value="Media">Videos</SelectItem>
+            <SelectItem value="Images">Photos</SelectItem>
             <SelectItem value="Others">Others</SelectItem>
           </SelectGroup>
         </SelectContent>
