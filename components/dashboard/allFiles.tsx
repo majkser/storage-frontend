@@ -4,16 +4,7 @@ import { useState, useEffect } from "react";
 import GenerateLinkButton from "@/components/generateLinkButton";
 import { Music, ImageIcon, Film, MoreHorizontal } from "lucide-react";
 import DownloadButton from "@/components/downloads/downloadButton";
-
-export interface File {
-  id: string;
-  fileName: string;
-  originalName: string;
-  size: number;
-  mimetype: string;
-  createdAt: string;
-  category: string;
-}
+import { File } from "@/app/types/fileInterface";
 
 async function getAllFiles(): Promise<File[]> {
   try {
@@ -60,7 +51,7 @@ export default function AllFiles({
     (file) => !filter || categoryBasedOnMimeType(file.mimetype) === filter
   );
 
-  function chooseSortFunction(a, b) {
+  function chooseSortFunction(a: File, b: File) {
     switch (sort) {
       case "alphabetically":
         return sortingOrderDesc
@@ -73,11 +64,11 @@ export default function AllFiles({
     }
   }
 
-  function sortAlphabetically(a, b) {
+  function sortAlphabetically(a: File, b: File) {
     return a.originalName.localeCompare(b.originalName);
   }
 
-  function sortByUploadDate(a, b) {
+  function sortByUploadDate(a: File, b: File) {
     return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
   }
 
