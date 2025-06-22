@@ -155,7 +155,7 @@ export default function AllFiles({
                 </div>
               </div>
               <div className="flex items-center flex-row md:flex-col gap-2 mt-2">
-                <GenerateLinkButton />
+                <GenerateLinkButton fileId={file.id} />
                 <DownloadButton fileId={10} label="Download" />
               </div>
             </div>

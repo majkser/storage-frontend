@@ -5,9 +5,7 @@ import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
 import { useState } from "react";
 import { Copy } from "lucide-react";
 
-//TODO pass to the generateLink fileId dynamically
-
-export default function GenerateLinkButton() {
+export default function GenerateLinkButton({ fileId }: { fileId: string }) {
   const [token, setToken] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
@@ -33,7 +31,6 @@ export default function GenerateLinkButton() {
         )
         .then((response) => {
           setToken(response.data.token);
-          console.log("Link generated:", response.data.token);
         });
     } catch (error) {
       console.error("Error generating link:", error);
@@ -45,7 +42,7 @@ export default function GenerateLinkButton() {
       <Popover>
         <PopoverTrigger
           className="bg-gray-200 p-2 rounded-md hover:bg-gray-300 cursor-pointer"
-          onClick={() => generateLink(2)}
+          onClick={() => generateLink(parseInt(fileId))}
         >
           Generate Link
         </PopoverTrigger>
