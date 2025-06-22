@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 
 export default function DownloadButton({
   fileId,
+  fileName,
   label = "Download File",
 }: {
-  fileId: number;
+  fileId: string;
+  fileName: string;
   label?: string;
 }) {
   async function downloadFile(fileId: number) {
@@ -25,7 +27,7 @@ export default function DownloadButton({
 
       const a = document.createElement("a");
       a.href = url;
-      a.download = `file-${fileId}`;
+      a.download = `${fileName}`;
 
       document.body.appendChild(a);
       a.click();
@@ -38,7 +40,7 @@ export default function DownloadButton({
     <Button
       variant="link"
       className="text-brand"
-      onClick={() => downloadFile(fileId)}
+      onClick={() => downloadFile(parseInt(fileId))}
     >
       {label}
     </Button>

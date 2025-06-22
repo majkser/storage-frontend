@@ -52,7 +52,7 @@ export default async function page({
     notFound();
   }
 
-  let fileId: number | undefined;
+  let fileId: string;
 
   //when file on the server will be implemented, change to not get the fileId
   // but treat as middleware on backend and fetch whole file info
@@ -68,11 +68,30 @@ export default async function page({
       notFound();
     }
 
-    fileId = parseInt(res.data.fileId);
+    fileId = res.data.fileId;
   } catch (error) {
     console.error("Error fetching file:", error);
     notFound();
   }
+
+  // try {
+  //   const res = await fetch(
+  //     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/files/${fileId}`,
+  //     {
+  //       method: "GET",
+  //     }
+  //   );
+
+  //   if (!res.ok) {
+  //     throw new Error("Failed to fetch files");
+  //   }
+
+  //   const data = await res.json();
+  //   console.log("Fetched files:", data);
+  // } catch (error) {
+  //   console.error("Error fetching files:", error);
+  //   notFound();
+  // }
 
   return (
     <BackgroundBeamsWithCollision className="h-screen w-screen">
@@ -102,7 +121,10 @@ export default async function page({
                   </div>
                   <div className="flex items-center gap-2">
                     <p className="text-sm text-gray-400">1.77 GB</p>
-                    <DownloadButton fileId={10} />
+                    <DownloadButton
+                      fileId={fileId}
+                      fileName="nazwa w page.tsx-zmien"
+                    />
                     {/* Replace 10 with the actual fileId when implemented !!!*/}
                   </div>
                 </div>

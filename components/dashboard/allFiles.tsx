@@ -156,7 +156,11 @@ export default function AllFiles({
               </div>
               <div className="flex items-center flex-row md:flex-col gap-2 mt-2">
                 <GenerateLinkButton fileId={file.id} />
-                <DownloadButton fileId={10} label="Download" />
+                <DownloadButton
+                  fileId={file.id}
+                  fileName={file.originalName}
+                  label="Download"
+                />
               </div>
             </div>
           ))}
