@@ -162,7 +162,7 @@ export default function AllFiles({
           ))}
       {filteredFiles.length === 0 && (
         <h4 className="h2 text-white text-center mt-8">
-          No {filter.toLowerCase()} found
+          Not {filter.toLowerCase()} found
         </h4>
       )}
     </div>
