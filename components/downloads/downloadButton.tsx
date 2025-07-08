@@ -11,7 +11,7 @@ export default function DownloadButton({
   fileName: string;
   label?: string;
 }) {
-  async function downloadFile(fileId: number) {
+  async function downloadFile(fileId: string) {
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/files/${fileId}/download`
@@ -40,7 +40,7 @@ export default function DownloadButton({
     <Button
       variant="link"
       className="text-brand"
-      onClick={() => downloadFile(parseInt(fileId))}
+      onClick={() => downloadFile(fileId)}
     >
       {label}
     </Button>

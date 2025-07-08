@@ -8,13 +8,16 @@ import { File } from "@/app/types/fileInterface";
 
 async function getAllFiles(): Promise<File[]> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/files`, {
-      method: "GET",
-      next: {
-        revalidate: 60, // Revalidate every 60 seconds
-      },
-      credentials: "include",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/files/userfiles`,
+      {
+        method: "GET",
+        next: {
+          revalidate: 60, // Revalidate every 60 seconds
+        },
+        credentials: "include",
+      }
+    );
 
     if (!res.ok) {
       throw new Error("Failed to fetch files");
@@ -131,18 +134,13 @@ export default function AllFiles({
             >
               <div className="flex items-center justify-start gap-4">
                 {(() => {
-                  const Icon = category.get(
-                    categoryBasedOnMimeType(file.mimetype)
-                  )?.icon;
+                  const categoryName = categoryBasedOnMimeType(file.mimetype);
+                  const Icon = category.get(categoryName)?.icon;
                   return Icon ? (
                     <div
                       className={`h-12 w-12 rounded-full flex items-center justify-center ${
-                        category.get(categoryBasedOnMimeType(file.mimetype))
-                          ?.color
-                      } ${
-                        category.get(categoryBasedOnMimeType(file.mimetype))
-                          ?.iconColor
-                      }`}
+                        category.get(categoryName)?.color
+                      } ${category.get(categoryName)?.iconColor}`}
                     >
                       <Icon className="h-6 w-6" />
                     </div>

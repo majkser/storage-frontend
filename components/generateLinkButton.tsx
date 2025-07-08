@@ -19,7 +19,7 @@ export default function GenerateLinkButton({ fileId }: { fileId: string }) {
     }, 2000);
   }
 
-  async function generateLink(fileId: number) {
+  async function generateLink(fileId: string) {
     try {
       axios
         .post(
@@ -42,7 +42,7 @@ export default function GenerateLinkButton({ fileId }: { fileId: string }) {
       <Popover>
         <PopoverTrigger
           className="bg-gray-200 p-2 rounded-md hover:bg-gray-300 cursor-pointer"
-          onClick={() => generateLink(parseInt(fileId))}
+          onClick={() => generateLink(fileId)}
         >
           Generate Link
         </PopoverTrigger>

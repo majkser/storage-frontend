@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import DownloadButton from "@/components/downloads/downloadButton";
 import axios from "axios";
 import { Music, ImageIcon, Film, MoreHorizontal } from "lucide-react";
+import { File } from "@/app/types/fileInterface";
 
 export default async function page({
   params,
@@ -48,11 +49,24 @@ export default async function page({
     ],
   ]);
 
+  function categoryBasedOnMimeType(mimeType: string): string {
+    if (mimeType.startsWith("audio/")) {
+      return "Music";
+    } else if (mimeType.startsWith("image/")) {
+      return "Images";
+    } else if (mimeType.startsWith("video/")) {
+      return "Media";
+    } else {
+      return "Others";
+    }
+  }
+
   if (token.length !== 36) {
     notFound();
   }
 
   let fileId: string;
+  let file: File;
 
   //when file on the server will be implemented, change to not get the fileId
   // but treat as middleware on backend and fetch whole file info
@@ -74,24 +88,26 @@ export default async function page({
     notFound();
   }
 
-  // try {
-  //   const res = await fetch(
-  //     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/files/${fileId}`,
-  //     {
-  //       method: "GET",
-  //     }
-  //   );
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/files/${fileId}`,
+      {
+        method: "GET",
+      }
+    );
 
-  //   if (!res.ok) {
-  //     throw new Error("Failed to fetch files");
-  //   }
+    if (!res.ok) {
+      throw new Error("Failed to fetch files");
+    }
 
-  //   const data = await res.json();
-  //   console.log("Fetched files:", data);
-  // } catch (error) {
-  //   console.error("Error fetching files:", error);
-  //   notFound();
-  // }
+    file = await res.json();
+    console.log("Fetched files:", file);
+  } catch (error) {
+    console.error("Error fetching files:", error);
+    notFound();
+  }
+
+  //try to implement promise all ?
 
   return (
     <BackgroundBeamsWithCollision className="h-screen w-screen">
@@ -106,24 +122,29 @@ export default async function page({
                 <div className="flex w-full justify-between items-center mb-1">
                   <div className="flex items-center gap-4 mb-2">
                     {(() => {
-                      const Icon = category.get("Images")?.icon; //make it dynamic when fetching files will be avilable
+                      const categoryName = categoryBasedOnMimeType(
+                        file.mimetype
+                      );
+                      const Icon = category.get(categoryName)?.icon;
                       return Icon ? (
                         <div
                           className={`h-12 w-12 rounded-full flex items-center justify-center ${
-                            category.get("Images")?.color
-                          } ${category.get("Images")?.iconColor}`}
+                            category.get(categoryName)?.color
+                          } ${category.get(categoryName)?.iconColor}`}
                         >
                           <Icon className="h-6 w-6" />
                         </div>
                       ) : null;
                     })()}
-                    <span className="text-2xl text-gray-400">File name</span>
+                    <span className="text-2xl text-gray-400">
+                      {file.originalName}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <p className="text-sm text-gray-400">1.77 GB</p>
+                    <p className="text-sm text-gray-400">{file.size}</p>
                     <DownloadButton
-                      fileId={fileId}
-                      fileName="nazwa w page.tsx-zmien"
+                      fileId={file.id}
+                      fileName={file.originalName}
                     />
                     {/* Replace 10 with the actual fileId when implemented !!!*/}
                   </div>
