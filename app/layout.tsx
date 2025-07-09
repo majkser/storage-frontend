@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Tektur } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/authContext";
+import FileProvider from "@/context/fileContext";
 
 const tektur = Tektur({
   variable: "--font-tektur",
@@ -20,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body className={`${tektur.className} antialiased bg-black`}>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <FileProvider>{children}</FileProvider>
+        </AuthProvider>
       </body>
     </html>
   );

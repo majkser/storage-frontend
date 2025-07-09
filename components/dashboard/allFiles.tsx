@@ -1,36 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { use } from "react";
 import GenerateLinkButton from "@/components/generateLinkButton";
 import { Music, ImageIcon, Film, MoreHorizontal } from "lucide-react";
 import DownloadButton from "@/components/downloads/downloadButton";
 import { File } from "@/app/types/fileInterface";
-
-async function getAllFiles(): Promise<File[]> {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/files/userfiles`,
-      {
-        method: "GET",
-        next: {
-          revalidate: 60, // Revalidate every 60 seconds
-        },
-        credentials: "include",
-      }
-    );
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch files");
-    }
-
-    const data = await res.json();
-    console.log("Fetched files:", data);
-    return data.files as File[];
-  } catch (error) {
-    console.error("Error fetching files:", error);
-    return [];
-  }
-}
+import { fileContext } from "@/context/fileContext";
 
 export default function AllFiles({
   sort,
@@ -41,14 +16,7 @@ export default function AllFiles({
   filter: string;
   sortingOrderDesc: boolean;
 }) {
-  const [files, setFiles] = useState<File[]>([]);
-  useEffect(() => {
-    async function fetchFiles() {
-      const fetchedFiles = await getAllFiles();
-      setFiles(fetchedFiles);
-    }
-    fetchFiles();
-  }, []);
+  const { files, loading, error } = use(fileContext);
 
   const filteredFiles = files.filter(
     (file) => !filter || categoryBasedOnMimeType(file.mimetype) === filter

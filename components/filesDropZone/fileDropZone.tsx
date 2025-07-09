@@ -3,12 +3,13 @@
 import { cn } from "@/lib/utils";
 import { RiUploadCloud2Fill } from "react-icons/ri";
 import { IoIosCloseCircle } from "react-icons/io";
-import { useEffect, useRef, useCallback, useState } from "react";
+import { useEffect, useRef, useCallback, useState, use } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "../ui/button";
 import { Progress } from "../ui/progress";
 import axios from "axios";
 import SuccessUpload from "@/components/filesDropZone/successUpload";
+import { fileContext } from "@/context/fileContext";
 
 export default function FileDropZone({
   isDropZoneOpen,
@@ -22,6 +23,7 @@ export default function FileDropZone({
   const [uploadProgress, setUploadProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [uploadedSuccessfully, setUploadedSuccessfully] = useState(false);
+  const { fetchAllFiles } = use(fileContext);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -72,6 +74,7 @@ export default function FileDropZone({
       setTimeout(() => {
         setUploadedSuccessfully(false);
       }, 2000);
+      fetchAllFiles(); // Refresh the file list after upload
     } catch (error) {
       console.error("Error uploading files:", error);
       setError("Error uploading files. Please try again.");
