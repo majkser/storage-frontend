@@ -1,6 +1,5 @@
 "use client";
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 
 export interface User {
@@ -42,13 +41,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     router.push("/login");
     try {
-      await axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/logout`,
-        null,
-        {
-          withCredentials: true,
-        }
-      );
+      await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/logout`, {
+        method: "POST",
+        credentials: "include",
+      });
       setUser(null);
     } catch (error) {
       console.log("Sign out error:", error);
@@ -61,14 +57,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const checkAuth = async () => {
     try {
-      const response = await axios.get<User>(
+      const response = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/user`,
         {
-          withCredentials: true,
+          credentials: "include",
         }
       );
-      if (response.status >= 200 && response.status < 300) {
-        setUser(response.data);
+      if (response.ok) {
+        const data = (await response.json()) as User;
+        setUser(data);
         setLoading(false);
       }
     } catch (error) {
