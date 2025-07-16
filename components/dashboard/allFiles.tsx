@@ -117,7 +117,22 @@ export default function AllFiles({
                 <div>
                   <h2 className="text-white text-2xl">{file.originalName}</h2>
                   <p className="text-gray-400">Uploaded on: {file.createdAt}</p>
-                  <p className="text-sm text-gray-400">{file.size}</p>
+                  {file.size < Math.pow(10, 6) && (
+                    <p className="text-sm text-gray-400">
+                      {(file.size / Math.pow(10, 3)).toPrecision(4)} kB
+                    </p>
+                  )}
+                  {file.size >= Math.pow(10, 6) &&
+                    file.size < Math.pow(10, 8) && (
+                      <p className="text-sm text-gray-400">
+                        {(file.size / Math.pow(10, 6)).toPrecision(4)} MB
+                      </p>
+                    )}
+                  {file.size >= Math.pow(10, 8) && (
+                    <p className="text-sm text-gray-400">
+                      {(file.size / Math.pow(10, 9)).toPrecision(4)} GB
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="flex items-center flex-row md:flex-col gap-2 mt-2">
