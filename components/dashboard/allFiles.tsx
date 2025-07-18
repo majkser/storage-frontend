@@ -28,6 +28,8 @@ export default function AllFiles({
         return sortingOrderDesc
           ? sortAlphabetically(a, b)
           : sortAlphabetically(b, a);
+      case "size":
+        return sortingOrderDesc ? sortBySize(a, b) : sortBySize(b, a);
       default:
         return sortingOrderDesc
           ? sortByUploadDate(a, b)
@@ -41,6 +43,10 @@ export default function AllFiles({
 
   function sortByUploadDate(a: File, b: File) {
     return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  }
+
+  function sortBySize(a: File, b: File) {
+    return b.size - a.size;
   }
 
   const category = new Map([

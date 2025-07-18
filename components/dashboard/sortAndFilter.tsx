@@ -30,6 +30,7 @@ export default function SortAndFilter({
             <SelectLabel>Sort by:</SelectLabel>
             <SelectItem value="Upload date">Upload date</SelectItem>
             <SelectItem value="alphabetically">alphabetically</SelectItem>
+            <SelectItem value="size">Size</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
