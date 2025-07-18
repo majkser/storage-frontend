@@ -3,6 +3,7 @@ import { Tektur } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/authContext";
 import FileProvider from "@/context/fileContext";
+import SearchFilesProvider from "@/context/searchFilesContext";
 
 const tektur = Tektur({
   variable: "--font-tektur",
@@ -22,7 +23,9 @@ export default function RootLayout({
     <html lang="pl">
       <body className={`${tektur.className} antialiased bg-black`}>
         <AuthProvider>
-          <FileProvider>{children}</FileProvider>
+          <SearchFilesProvider>
+            <FileProvider>{children}</FileProvider>{" "}
+          </SearchFilesProvider>
         </AuthProvider>
       </body>
     </html>
