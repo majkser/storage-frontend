@@ -6,6 +6,7 @@ import { Music, ImageIcon, Film, MoreHorizontal } from "lucide-react";
 import DownloadButton from "@/components/downloads/downloadButton";
 import { File } from "@/app/types/fileInterface";
 import { fileContext } from "@/context/fileContext";
+import { SearchFilesContext } from "@/context/searchFilesContext";
 
 export default function AllFiles({
   sort,
@@ -17,9 +18,14 @@ export default function AllFiles({
   sortingOrderDesc: boolean;
 }) {
   const { files, loading, error } = use(fileContext);
+  const { searchQuery } = use(SearchFilesContext);
 
-  const filteredFiles = files.filter(
-    (file) => !filter || categoryBasedOnMimeType(file.mimetype) === filter
+  let filteredFiles = files.filter(
+    (file: File) => !filter || categoryBasedOnMimeType(file.mimetype) === filter
+  );
+
+  filteredFiles = filteredFiles.filter((file: File) =>
+    file.originalName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   function chooseSortFunction(a: File, b: File) {
