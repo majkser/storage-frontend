@@ -122,7 +122,10 @@ export default function AllFiles({
                 })()}
                 <div>
                   <h2 className="text-white text-2xl">{file.originalName}</h2>
-                  <p className="text-gray-400">Uploaded on: {file.createdAt}</p>
+                  <p className="text-gray-400">
+                    Uploaded on:{" "}
+                    {new Date(file.createdAt).toLocaleDateString("pl-PL")}
+                  </p>
                   {file.size < Math.pow(10, 6) && (
                     <p className="text-sm text-gray-400">
                       {(file.size / Math.pow(10, 3)).toPrecision(4)} kB
