@@ -1,7 +1,14 @@
-"use client"
+"use client";
 
-import { LayoutDashboard, FileText, ImageIcon, Film, MoreHorizontal } from 'lucide-react'
-import { NavItem } from "./nav-item"
+import {
+  LayoutDashboard,
+  FileText,
+  ImageIcon,
+  Film,
+  MoreHorizontal,
+  Shield,
+} from "lucide-react";
+import { NavItem } from "./nav-item";
 
 export function SidebarNav() {
   const navItems = [
@@ -9,6 +16,11 @@ export function SidebarNav() {
       icon: LayoutDashboard,
       label: "Dashboard",
       href: "/dashboard",
+    },
+    {
+      icon: Shield,
+      label: "Admin Panel",
+      href: "/admin",
     },
     {
       icon: FileText,
@@ -30,7 +42,7 @@ export function SidebarNav() {
       label: "Others",
       href: "/others",
     },
-  ]
+  ];
 
   return (
     <nav className="mt-6 px-2 flex-1">
@@ -43,5 +55,5 @@ export function SidebarNav() {
         />
       ))}
     </nav>
-  )
+  );
 }
