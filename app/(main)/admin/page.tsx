@@ -87,7 +87,7 @@ export default function AdminPage() {
                   placeholder="Enter user email address..."
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-gray-900 border-0"
+                  className="bg-gray-900 border-chart-2 text-primary-foreground"
                 />
               </div>
               <Button
@@ -144,10 +144,10 @@ export default function AdminPage() {
                         variant="outline"
                         size="sm"
                         onClick={() => handleRevokeAdmin(user.id)}
-                        className="text-destructive border-destructive/30 hover:bg-destructive/10"
+                        className="text-destructive border-destructive bg-destructive/10 hover:bg-destructive/20 hover:text-destructive-foreground transition-colors duration-200 shadow-sm rounded-md px-3 py-1"
                         disabled={user.email === "mikolaj@storage.com"}
                       >
-                        <Trash2 className="w-4 h-4 mr-1" />
+                        <Trash2 className="w-4 h-4 mr-2" />
                         Revoke
                       </Button>
                     </div>
