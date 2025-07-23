@@ -7,6 +7,7 @@ import {
   Film,
   MoreHorizontal,
   Shield,
+  FileKey2,
 } from "lucide-react";
 import { NavItem } from "./nav-item";
 
@@ -18,8 +19,13 @@ export function SidebarNav() {
       href: "/dashboard",
     },
     {
+      icon: FileKey2,
+      label: "File access",
+      href: "/file-access",
+    },
+    {
       icon: Shield,
-      label: "Admin Panel",
+      label: "Grant Admin",
       href: "/admin",
     },
     {
