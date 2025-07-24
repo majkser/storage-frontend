@@ -5,7 +5,11 @@ import axios from "axios";
 export async function middleware(request: NextRequest) {
   const authCookie = request.cookies.get("connect.sid");
 
-  if (request.nextUrl.pathname.startsWith("/dashboard")) {
+  if (
+    request.nextUrl.pathname.startsWith("/dashboard") ||
+    request.nextUrl.pathname.startsWith("/admin") ||
+    request.nextUrl.pathname.startsWith("/file-access")
+  ) {
     if (!authCookie) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
@@ -34,5 +38,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: ["/dashboard/:path*", "/admin/:path*", "/file-access/:path*"],
 };
