@@ -54,7 +54,7 @@ export default function AdminPage() {
   return (
     <>
       {/* Content */}
-      <main className="p-6 text-primary-foreground">
+      <main className="p-6 text-primary-foreground min-w-[300px]">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Admin Management</h1>
           <p className="text-muted-foreground">
@@ -117,14 +117,14 @@ export default function AdminPage() {
             {adminUsers.map((user) => (
               <Card key={user.id} className="bg-gray-900/50 border-gray-800">
                 <CardContent className="p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                  <div className="flex items-center justify-between sm:flex-row sm:gap-0 flex-col gap-8">
+                    <div className="flex items-center gap-4 sm:flex-row flex-col">
                       <div className="w-10 h-10 bg-brand/20 rounded-full flex items-center justify-center">
                         <Crown className="w-10 h-10 text-brand" />
                       </div>
                       <div>
-                        <div className="flex items-center gap-2">
-                          <h5 className="h5 font-medium text-primary-foreground">
+                        <div className="flex items-center gap-4 sm:flex-row flex-col">
+                          <h5 className="span font-medium text-primary-foreground">
                             {user.email}
                           </h5>
                           <Badge
@@ -134,9 +134,6 @@ export default function AdminPage() {
                             Admin
                           </Badge>
                         </div>
-                        <p className="text-sm text-muted-foreground">
-                          Granted on: {user.grantedOn} by {user.grantedBy}
-                        </p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
