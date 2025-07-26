@@ -3,6 +3,7 @@
 import SortAndFilter from "@/components/dashboard/sortAndFilter";
 import { useState } from "react";
 import AllFiles from "./allFiles";
+import { SearchBar } from "./search-bar";
 
 export default function UploadedFiles() {
   const [sort, setSort] = useState("");
@@ -24,8 +25,8 @@ export default function UploadedFiles() {
 
   return (
     <div className="w-full min-w-[350px]">
-      <div className="ml-4 md:ml-24 mb-8">
-        <h1 className="text-white h2">Uploaded Files</h1>
+      <div className="ml-4 md:ml-12 mb-8  flex justify-between items-center max-w-[1400px] min-w-[300px]">
+        <SearchBar />
         <SortAndFilter
           handleSortChange={handleSortChange}
           handleSortingOrderChange={handleSortingOrderChange}

@@ -8,7 +8,7 @@ export function SearchBar() {
   const { handleSearchQueryChange } = use(SearchFilesContext);
 
   return (
-    <div className="relative w-1/3">
+    <div className="relative w-1/3 scale-110">
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-foreground h-4 w-4" />
       <input
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>

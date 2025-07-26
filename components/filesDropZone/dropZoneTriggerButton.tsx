@@ -19,8 +19,10 @@ export default function DropZoneTriggerButton() {
           as="button"
           className=" bg-black  text-white flex items-center space-x-2"
         >
-          <Upload className="mr-2 h-4 w-4" />
-          <span>Upload</span>
+          <div className="flex items-center space-x-2 px-4">
+            <Upload className="scale-125 mr-4 h-4 w-4" />
+            <span className="span">Upload</span>
+          </div>
         </HoverBorderGradient>
       </div>
       <FileDropZone
