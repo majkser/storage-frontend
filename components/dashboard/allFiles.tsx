@@ -21,7 +21,10 @@ export default function AllFiles({
   const { searchQuery } = use(SearchFilesContext);
 
   let filteredFiles = files.filter(
-    (file: File) => !filter || categoryBasedOnMimeType(file.mimetype) === filter
+    (file: File) =>
+      !filter ||
+      filter === "All" ||
+      categoryBasedOnMimeType(file.mimetype) === filter
   );
 
   filteredFiles = filteredFiles.filter((file: File) =>
