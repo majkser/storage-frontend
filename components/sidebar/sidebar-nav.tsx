@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import { NavItem } from "./nav-item";
 
+//TODO - file access and admin only for admin users !!!
+
 export function SidebarNav() {
   const navItems = [
     {
@@ -21,12 +23,12 @@ export function SidebarNav() {
     {
       icon: FileKey2,
       label: "File access",
-      href: "/file-access",
+      href: "/dashboard/file-access",
     },
     {
       icon: Shield,
       label: "Grant Admin",
-      href: "/admin",
+      href: "/dashboard/admin",
     },
     {
       icon: FileText,
