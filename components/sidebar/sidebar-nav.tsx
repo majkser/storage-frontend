@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  LayoutDashboard,
-  FileText,
-  ImageIcon,
-  Film,
-  MoreHorizontal,
-  Shield,
-  FileKey2,
-} from "lucide-react";
+import { LayoutDashboard, Shield, FileKey2 } from "lucide-react";
 import { NavItem } from "./nav-item";
 
 //TODO - file access and admin only for admin users !!!
@@ -29,26 +21,6 @@ export function SidebarNav() {
       icon: Shield,
       label: "Grant Admin",
       href: "/dashboard/admin",
-    },
-    {
-      icon: FileText,
-      label: "Documents",
-      href: "/documents",
-    },
-    {
-      icon: ImageIcon,
-      label: "Images",
-      href: "/images",
-    },
-    {
-      icon: Film,
-      label: "Media",
-      href: "/media",
-    },
-    {
-      icon: MoreHorizontal,
-      label: "Others",
-      href: "/others",
     },
   ];
 
